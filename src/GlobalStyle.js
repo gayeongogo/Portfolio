@@ -3,11 +3,29 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    src: local('Pretendard-Regular'), url('./fonts/Pretendard-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
   }
-  h1, h2, h3, b {
+  @font-face {
+    font-family: 'Pretendard-Medium';
+    src: local('Pretendard-Medium'), url('./fonts/Pretendard-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard-SemiBold';
+    src: local('Pretendard-SemiBold'), url('./fonts/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Pretendard-Bold';
+    src: local('Pretendard-Bold'), url('./fonts/Pretendard-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  h1, h2, h3, h4, b {
     margin: 0;
     padding: 0;
     border: 0;
@@ -19,8 +37,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Pretendard-Regular', Arial, sans-serif;
-    font-size: 16px;
   }
   *::before, *::after{
     box-sizing: border-box; 
@@ -37,11 +53,12 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background: #222831;
     color: #EEEEEE;
-    &::-webkit-scrollbar {
+    font-family: 'Pretendard-Regular';
+    /* &::-webkit-scrollbar {
       display: none;
-    }
+    } */
   }
-  ul[role='list'], ol[role='list']{
+  ul, ol{
     list-style: none; 
   }
   img, picture, svg, video, canvas{
