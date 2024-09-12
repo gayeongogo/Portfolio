@@ -68,7 +68,7 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat; 
     background-size: cover;
   }
-  button {
+  button, a {
     all: unset;
     cursor: pointer;
   }

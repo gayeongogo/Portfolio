@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle';
 
@@ -168,20 +168,31 @@ const Certi = styled.article`
   }
 `
 const Experience = styled.section`
-  flex-basis: 70%;
-`
-const Nav = styled.nav`
-  p {
-    font-family: 'Pretendard-Semibold';
-    font-size: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  main {
+    flex-basis: 73%;
   }
 `
+const Nav = styled.nav`
+  position: sticky;
+  top: 3rem;
+  align-self: flex-start;
+  height: 100vh;
+  font-family: 'Pretendard-SemiBold';
+`
+const NavItem = styled.p`
+  font-size: 3.5rem;
+  cursor: pointer;
+  color: #EEEEEE0D;
+  transition: .3s;
+  ${({ $active }) => $active && 
+    'font-size: 3.8rem; transition: .3s; color: #EEEEEE;'
+  };
+`
+
 const Career = styled.article`
   margin-bottom: 6rem;
-  
-  background: #343439;
-    border-radius: 1rem;
-    padding: 1.5rem 2rem;
   span {
     font-size: 1.1rem;
     display: inline-block;
@@ -206,6 +217,11 @@ const Career = styled.article`
     padding-left: 1rem;
     line-height: 230%;
   }
+`
+const CareerBox = styled.div`
+  background: #343439;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
 `
 const Tech = styled.div`
   display: flex;
@@ -264,11 +280,12 @@ const CardInfo = styled.div`
   span {
     display: inline-block;
     color: #A1A1A1;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
   }
   p {
     font-size: 1.1rem;
     margin-bottom: 17px;
+    line-height: 130%;
   }
   ul {
     li {
@@ -333,6 +350,44 @@ const Footer = styled.footer`
 `
 
 function App() {
+  const careerRef = useRef(null);
+  const projectRef = useRef(null);
+  const [activeSection, setActiveSection] = useState('');
+
+  useEffect(() => {
+    const careerArea = careerRef.current;
+    const projectArea = projectRef.current;
+
+    const observerOptions = {
+      root: null, // 뷰포트 기준으로 감지
+      rootMargin: '0px',
+      threshold: 0.3, // 섹션의 30%가 보이면 활성화
+    }
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      })
+    }, observerOptions)
+
+    if (careerArea) observer.observe(careerArea);
+    if (projectArea) observer.observe(projectArea);
+
+    return () => {
+      observer.unobserve(careerArea);
+      observer.unobserve(projectArea);
+    };
+  }, [])
+
+  const handleNavClick = (ref) => {
+    if (ref.current) {
+      ref.current.scrollIntoView();
+    }
+  };
+
+
   return (
     <div>
       <GlobalStyle/>
@@ -416,44 +471,56 @@ function App() {
       </AboutMe>
       
       <Container>
-        <Main>
+        <Experience>
           <Nav>
-            <p>Career</p>
-            <p>Project</p>
+            <NavItem 
+              $active={activeSection === 'career'}
+              onClick={() => handleNavClick(careerRef)}
+            >
+              Career
+            </NavItem>
+            <NavItem 
+              $active={activeSection === 'project'}
+              onClick={() => handleNavClick(projectRef)}
+            >
+              Project
+            </NavItem>
           </Nav>
-          <Experience>
-            <Career>
-              <span>2023.07 &#126; 2024.01</span>
-              <h3>(주)디로그</h3>
-              <h4>디자인, 퍼블리싱, 프론트엔드 개발 담당</h4>
-              <ul>
-                <li>Figma를 이용한 디자인 작업</li>
-                <li>HTML, CSS를 활용해 웹 표준 및 웹 접근성을 고려한 퍼블리싱 작업</li>
-                <li>법무법인 웹사이트 리뉴얼&#40;리디자인 및 반응형 페이지&#41;</li>
-                <li>React를 사용한 에너지 중개 사이트 개발 참여</li>
-                <li>React Native를 사용한 북마크 앱 디자인 및 개발 참여</li>
-                <li>제안서 및 산출물 디자인 요소 작업</li>
-              </ul>
-              <Tech>
-                <div>
-                  <img src={`${process.env.PUBLIC_URL}/images/react.svg`} alt='React.js'/>
-                  <p>React.js</p>
-                </div>
-                <div>
-                  <img src={`${process.env.PUBLIC_URL}/images/tailwind-css.svg`} alt='React.js'/>
-                  <p>Tailwind</p>
-                </div>
-                <div>
-                  <img src={`${process.env.PUBLIC_URL}/images/figma.svg`} alt='React.js'/>
-                  <p>Figma</p>
-                </div>
-                <div>
-                  <img src={`${process.env.PUBLIC_URL}/images/react.svg`} alt='React.js'/>
-                  <p>React Native</p>
-                </div>
-              </Tech>
+          <main>
+            <Career id="career" ref={careerRef}>
+              <CareerBox>
+                <span>2023.07 &#126; 2024.01</span>
+                <h3>(주)디로그</h3>
+                <h4>디자인, 퍼블리싱, 프론트엔드 개발 담당</h4>
+                <ul>
+                  <li>Figma를 이용한 디자인 작업</li>
+                  <li>HTML, CSS를 활용해 웹 표준 및 웹 접근성을 고려한 퍼블리싱 작업</li>
+                  <li>법무법인 웹사이트 리뉴얼&#40;리디자인 및 반응형 페이지&#41;</li>
+                  <li>React를 사용한 에너지 중개 사이트 개발 참여</li>
+                  <li>React Native를 사용한 북마크 앱 디자인 및 개발 참여</li>
+                  <li>제안서 및 산출물 디자인 요소 작업</li>
+                </ul>
+                <Tech>
+                  <div>
+                    <img src={`${process.env.PUBLIC_URL}/images/react.svg`} alt='React.js'/>
+                    <p>React.js</p>
+                  </div>
+                  <div>
+                    <img src={`${process.env.PUBLIC_URL}/images/tailwind-css.svg`} alt='React.js'/>
+                    <p>Tailwind</p>
+                  </div>
+                  <div>
+                    <img src={`${process.env.PUBLIC_URL}/images/figma.svg`} alt='React.js'/>
+                    <p>Figma</p>
+                  </div>
+                  <div>
+                    <img src={`${process.env.PUBLIC_URL}/images/react.svg`} alt='React.js'/>
+                    <p>React Native</p>
+                  </div>
+                </Tech>
+              </CareerBox>
             </Career>
-            <Project>
+            <Project id="project" ref={projectRef}>
               <Cards>
                 <Card>
                   <CardImg>
@@ -551,8 +618,8 @@ function App() {
                 </Card>
               </Cards>
             </Project>
-          </Experience>
-        </Main>
+          </main>
+        </Experience>
       </Container>
       <Thanks>
         <div>
