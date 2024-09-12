@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle';
+import { motion } from "framer-motion"
 
 const Container = styled.div`
   width: 1024px;
@@ -9,13 +10,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `
-const Intro = styled.section`
+const Intro = styled(motion.section)`
   height: 100vh;
   background: #FFFFFF;
   color: #222831;
   font-family: 'Pretendard-SemiBold';
 `
-const Header = styled.header`
+const Header = styled(motion.header)`
   display: flex;
   justify-content: center;
   padding-top: 50px;
@@ -40,12 +41,12 @@ const Main = styled.main`
   flex: 1;
   display: flex;
   justify-content: space-between;
+  padding: 0 3rem;
 `
-const TextArea = styled.div`
+const TextArea = styled(motion.div)`
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex: 1;
+  align-items: center;  
   line-height: 370%;
   p {
     font-size: 45px;
@@ -57,13 +58,13 @@ const TextArea = styled.div`
     font-size: 55px;
   }
 `
-const ImageArea = styled.div`
+const ImageArea = styled(motion.div)`
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: flex-end;
   flex: 1;
   img {
-    width: 37%;
+    width: 57%;
   }
 `
 const Title = styled.h1`
@@ -78,11 +79,11 @@ const SubTitle = styled.h2`
   text-align: center;
   margin-bottom: 4rem;
 `
-const AboutMe = styled.section`
+const AboutMe = styled(motion.section)`
   padding: 6rem 0;
 `
 
-const Values = styled.article`
+const Values = styled(motion.article)`
   font-size: 24px;
   position: relative;
   display: flex;
@@ -109,7 +110,7 @@ const Values = styled.article`
     }
   }
 `
-const Skill = styled.article`
+const Skill = styled(motion.article)`
   padding: 6rem 0;
   div {
     background: #343439;
@@ -149,16 +150,18 @@ const Skill = styled.article`
 `
 const Certi = styled.article`
   div {
-    font-family: 'Pretendard-Medium';
-    width: 70%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #343439;
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-    padding: 20px 40px;
+    div {
+      font-family: 'Pretendard-Medium';
+      width: 70%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #343439;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      padding: 20px 40px;
+    }
     b{
       font-size: 1.7rem;
     }
@@ -218,12 +221,12 @@ const Career = styled.article`
     line-height: 230%;
   }
 `
-const CareerBox = styled.div`
+const CareerBox = styled(motion.div)`
   background: #343439;
   border-radius: 1rem;
   padding: 1.5rem 2rem;
 `
-const Tech = styled.div`
+const Tech = styled(motion.div)`
   display: flex;
   margin-top: 4.5rem;
   div{
@@ -249,7 +252,7 @@ const Tech = styled.div`
 const Project = styled.article`
   padding-bottom: 7rem;
 `
-const Cards = styled.div`
+const Cards = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
@@ -320,7 +323,7 @@ const Thanks = styled.section`
     margin: -1rem 0 5rem 0;
   }
 `
-const Contact = styled.div`
+const Contact = styled(motion.div)`
   margin-top: 0;
   display: flex;
   justify-content: center;
@@ -352,7 +355,7 @@ const Footer = styled.footer`
 function App() {
   const careerRef = useRef(null);
   const projectRef = useRef(null);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState(''); //navigation 활성화
 
   useEffect(() => {
     const careerArea = careerRef.current;
@@ -361,7 +364,7 @@ function App() {
     const observerOptions = {
       root: null, // 뷰포트 기준으로 감지
       rootMargin: '0px',
-      threshold: 0.3, // 섹션의 30%가 보이면 활성화
+      threshold: 0.1, // 섹션의 30%가 보이면 활성화
     }
     
     const observer = new IntersectionObserver((entries) => {
@@ -387,24 +390,51 @@ function App() {
     }
   };
 
+  const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible
+  };
+
 
   return (
     <div>
       <GlobalStyle/>
-      <Intro>
+      <Intro
+        initial="hidden"
+        whileInView="visible"
+        variants={{ visible: { transition: { staggerChildren: 0.3 } } }}
+      >
         <Container>
-          <Header>
+          <Header
+            variants={{
+              hidden: { opacity: 0, y: -20 },
+              visible
+            }}
+          >
             <div>github</div>
             <div>velog</div>
           </Header>
           <Main>
-            <TextArea>
+            <TextArea
+              variants={itemVariants}
+            >
               <p><span>안녕하세요.</span>
               <br/>매일의 작은 성공을 실천하며,
               <br/>포기하지 않는 <span>프론트엔드 개발자</span>
               <br/><b>고가연입니다.</b></p>
             </TextArea>
-            <ImageArea>
+            <ImageArea
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{
+                ease: 'easeInOut',
+                duration: 1,
+                delay: .5,
+              }}
+            >
               <img src={`${process.env.PUBLIC_URL}/images/mainphoto.png`} alt='가연'/>
             </ImageArea>
           </Main>
@@ -413,7 +443,16 @@ function App() {
       <AboutMe>
         <Container>
           <Title>About Me</Title>
-          <Values>
+          <Values
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false }}
+            transition={{
+              ease: 'easeInOut',
+              duration: 1,
+              x: { duration: .7 },
+            }}
+          >
             <ul>
               <li>개발 과정에서 항상 사용자의 입장을 생각해요.</li>
               <li>꾸준한 기록으로 성장의 발판을 만들어요.</li>
@@ -426,7 +465,16 @@ function App() {
           </Values>
           <Skill>
             <SubTitle>⚙️ Skill & Tools</SubTitle>
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{
+                ease: 'easeInOut',
+                duration: 1,
+                y: { duration: .7 },
+              }}
+            >
               <h3>많이 해봤어요</h3>
               <ul>
                 <li><img src={`${process.env.PUBLIC_URL}/images/react.svg`} alt='React.js'/>React.js</li>
@@ -440,8 +488,17 @@ function App() {
                 <li><img src={`${process.env.PUBLIC_URL}/images/figma.svg`} alt='Figma'/>Figma</li>
                 <li><img src={`${process.env.PUBLIC_URL}/images/adobe-photoshop.svg`} alt='Photoshop'/>Photoshop</li>
               </ul>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 70 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{
+                ease: 'easeInOut',
+                duration: 1,
+                y: { duration: .7 },
+              }}
+            >
               <h3>해본 적 있어요</h3>
               <ul>
                 <li><img src={`${process.env.PUBLIC_URL}/images/react.svg`} alt='React Native'/>React Native</li>
@@ -450,26 +507,36 @@ function App() {
                 <li><img src={`${process.env.PUBLIC_URL}/images/bootstrap.svg`} alt='Bootstrap'/>Bootstrap</li>
                 <li><img src={`${process.env.PUBLIC_URL}/images/file-type-firebase.svg`} alt='Firebase'/>Firebase</li>
               </ul>
-            </div>
+            </motion.div>
           </Skill>
           <Certi>
             <SubTitle>🏅 Certifications</SubTitle>
-            <div>
-              <b>정보처리기사</b>
-              <p>과학기술정보통신부, 2024년 9월 취득</p>
-            </div>
-            <div>
-              <b>GTQ&#40;그래픽기술자격&#41; 1급</b>
-              <p>한국생산성본부, 2022년 3월 취득</p>
-            </div>
-            <div>
-              <b>컴퓨터활용능력 2급</b>
-              <p>대한상공회의소, 2022년 2월 취득</p>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 70 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{
+                ease: 'easeInOut',
+                duration: 1,
+                y: { duration: .7 },
+              }}
+            >
+              <div>
+                <b>정보처리기사</b>
+                <p>과학기술정보통신부, 2024년 9월 취득</p>
+              </div>
+              <div>
+                <b>GTQ&#40;그래픽기술자격&#41; 1급</b>
+                <p>한국생산성본부, 2022년 3월 취득</p>
+              </div>
+              <div>
+                <b>컴퓨터활용능력 2급</b>
+                <p>대한상공회의소, 2022년 2월 취득</p>
+              </div>
+            </motion.div>
           </Certi>
         </Container>
       </AboutMe>
-      
       <Container>
         <Experience>
           <Nav>
@@ -487,8 +554,20 @@ function App() {
             </NavItem>
           </Nav>
           <main>
-            <Career id="career" ref={careerRef}>
-              <CareerBox>
+            <Career 
+              id="career" 
+              ref={careerRef}
+            >
+              <CareerBox
+                initial={{ opacity: 0, x: 70 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: 'easeInOut',
+                  duration: 1,
+                  x: { duration: .7 },
+                }}
+              >
                 <span>2023.07 &#126; 2024.01</span>
                 <h3>(주)디로그</h3>
                 <h4>디자인, 퍼블리싱, 프론트엔드 개발 담당</h4>
@@ -500,7 +579,16 @@ function App() {
                   <li>React Native를 사용한 북마크 앱 디자인 및 개발 참여</li>
                   <li>제안서 및 산출물 디자인 요소 작업</li>
                 </ul>
-                <Tech>
+                <Tech
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false }}
+                  transition={{
+                    ease: 'easeInOut',
+                    duration: 1,
+                    y: { duration: .7 },
+                  }}
+                >
                   <div>
                     <img src={`${process.env.PUBLIC_URL}/images/react.svg`} alt='React.js'/>
                     <p>React.js</p>
@@ -521,7 +609,16 @@ function App() {
               </CareerBox>
             </Career>
             <Project id="project" ref={projectRef}>
-              <Cards>
+              <Cards
+                initial={{ opacity: 0, y: 70 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{
+                  ease: 'easeInOut',
+                  duration: 1,
+                  y: { duration: .7 },
+                }}
+              >
                 <Card>
                   <CardImg>
                     <img src={`${process.env.PUBLIC_URL}/images/imsi.jpg`} alt='임'/>
@@ -623,10 +720,29 @@ function App() {
       </Container>
       <Thanks>
         <div>
-          <h1>Thank You</h1>
-          <h2>저와 함께 작업하고 싶거나, 더 많은 정보를 원하신다면 언제든지 연락주세요.
-          <br/>끝까지 봐주셔서 감사합니다.</h2>
-          <Contact>
+          <h1>Thank You!</h1>
+          <motion.h2
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{
+              ease: 'easeInOut',
+              duration: 1.3,
+              y: { duration: .7 },
+            }}
+          >
+            저와 함께 작업하고 싶거나, 더 많은 정보를 원하신다면 언제든지 연락주세요.
+          <br/>끝까지 봐주셔서 감사합니다.
+          </motion.h2>
+          <Contact
+            initial={{ opacity: 0}}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false }}
+            transition={{
+              ease: 'easeInOut',
+              duration: 1.5,
+            }}
+          >
             <Github>
               <a href="https://github.com">
                 <img src={`${process.env.PUBLIC_URL}/images/contact-github.png`} alt="github"/>
