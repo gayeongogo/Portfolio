@@ -293,13 +293,42 @@ const CardInfo = styled.div`
   ul {
     li {
       display: inline-block;
-      background: green;
       border-radius: 7px;
       padding: 5px 9px;
       margin: 0 8px 8px 0;
     }
   }
-
+`
+const Keyword = styled.li`
+  color: #FFFFFF;
+  background: ${(props) => {
+    switch (props.$keyword) {
+      case '개인':
+        return '#7EA883';
+      case '팀':
+        return '#B15959';
+      case 'React':
+        return '#8C8CCD';
+      case 'Javascript':
+        return '#CDB17B';
+      case 'HTML':
+        return '#D07F7F';
+      case 'styled-components':
+        return '#D18BC6';
+      case 'Tailwind CSS':
+        return '#7394E8';
+      case 'React Native':
+        return '#D0956A';
+      case 'Firebase':
+        return '#6DB4CA';
+      case '외주':
+        return '#757881';
+      case '반응형':
+        return '#3CA38A';
+      default:
+        return 'gray';
+    }
+  }};
 `
 const Thanks = styled.section`
   height: 100vh;
@@ -628,10 +657,10 @@ function App() {
                     <span>2024.06 &#126; 2024.07</span>
                     <p>그날의 일기를 다녀온 카페에 대한 평가와 함께 기록할 수 있는 사이트 입니다.</p>
                     <ul>
-                      <li>개인</li>
-                      <li>React</li>
-                      <li>styled-components</li>
-                      <li>Firebase</li>
+                      <Keyword $keyword="개인">개인</Keyword>
+                      <Keyword $keyword="React">React</Keyword>
+                      <Keyword $keyword="styled-components">styled-components</Keyword>
+                      <Keyword $keyword="Firebase">Firebase</Keyword>
                     </ul>
                   </CardInfo>
                 </Card>
@@ -644,10 +673,10 @@ function App() {
                     <span>2024.06 &#126; 2024.07</span>
                     <p>SNS용 매거진을 쉽고 빠르게 제작할 수 있는 사이트 입니다.</p>
                     <ul>
-                      <li>개인</li>
-                      <li>HTML</li>
-                      <li>styled-components</li>
-                      <li>Javascript</li>
+                      <Keyword $keyword="개인">개인</Keyword>
+                      <Keyword $keyword="HTML">HTML</Keyword>
+                      <Keyword $keyword="styled-components">styled-components</Keyword>
+                      <Keyword $keyword="Javascript">Javascript</Keyword>
                     </ul>
                   </CardInfo>
                 </Card>
@@ -660,11 +689,11 @@ function App() {
                     <span>2024.06 &#126; 2024.07</span>
                     <p>기존 사이트를 리디자인하고 반응형 페이지로 개선하는 프로젝트에 참여했습니다.</p>
                     <ul>
-                      <li>팀</li>
-                      <li>외주</li>
-                      <li>React</li>
-                      <li>Tailwind CSS</li>
-                      <li>반응형</li>
+                      <Keyword $keyword="팀">팀</Keyword>
+                      <Keyword $keyword="외주">외주</Keyword>
+                      <Keyword $keyword="React">React</Keyword>
+                      <Keyword $keyword="Tailwind CSS">Tailwind CSS</Keyword>
+                      <Keyword $keyword="반응형">반응형</Keyword>
                     </ul>
                   </CardInfo>
                 </Card>
@@ -677,9 +706,9 @@ function App() {
                     <span>2024.06 &#126; 2024.07</span>
                     <p>관심있는 링크를 저장하고 분류별로 모아 관리할 수 있는 북마크 앱 개발에 참여했습니다.</p>
                     <ul>
-                      <li>팀</li>
-                      <li>React Native</li>
-                      <li>Tailwind CSS</li>
+                      <Keyword $keyword="팀">팀</Keyword>
+                      <Keyword $keyword="React Native">React Native</Keyword>
+                      <Keyword $keyword="Tailwind CSS">Tailwind CSS</Keyword>
                     </ul>
                   </CardInfo>
                 </Card>
@@ -692,9 +721,9 @@ function App() {
                     <span>2024.06 &#126; 2024.07</span>
                     <p>정부 공동투자형 개발 사업으로 진행된 에너지 거래 중개 사이트 개발에 참여했습니다.</p>
                     <ul>
-                      <li>팀</li>
-                      <li>React</li>
-                      <li>Tailwind CSS</li>
+                      <Keyword $keyword="팀">팀</Keyword>
+                      <Keyword $keyword="React Native">React Native</Keyword>
+                      <Keyword $keyword="Tailwind CSS">Tailwind CSS</Keyword>
                     </ul>
                   </CardInfo>
                 </Card>
@@ -707,9 +736,9 @@ function App() {
                     <span>2024.06 &#126; 2024.07</span>
                     <p>다양한 프로젝트와 경험을 담아낸 개인 포트폴리오 사이트 입니다.</p>
                     <ul>
-                      <li>개인</li>
-                      <li>React</li>
-                      <li>styled-components</li>
+                      <Keyword $keyword="개인">개인</Keyword>
+                      <Keyword $keyword="React">React</Keyword>
+                      <Keyword $keyword="styled-components">styled-components</Keyword>
                     </ul>
                   </CardInfo>
                 </Card>
