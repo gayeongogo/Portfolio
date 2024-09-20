@@ -357,7 +357,7 @@ const Contact = styled(motion.div)`
   display: flex;
   justify-content: center;
   text-align: center;
-  a {
+  a, button {
     img {
       width: 60px;
     }
@@ -371,8 +371,18 @@ const Email = styled.div`
   p {
     position: absolute;
     top: 50%;
-    left: 4.7rem;
+    left: 3.7rem;
+    opacity: 0;
     transform:translate(0,-50%);
+    transition: ease-in-out .3s;
+  }
+  
+`
+const EmailLink = styled.button`
+  &:hover ~ p {
+    left: 4.7rem;
+    opacity: 1;
+    transition: ease-in-out .3s;
   }
 `
 const Footer = styled.footer`
@@ -424,6 +434,15 @@ function App() {
   const itemVariants = {
     hidden: { opacity: 0, y: 10 },
     visible
+  };
+
+  const handleCopyClipBoard = async(text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('이메일 주소가 복사되었습니다.');
+    } catch (error) {
+      console.log('이메일 주소 복사 실패')
+    }
   };
 
 
@@ -778,9 +797,9 @@ function App() {
               </a>
             </Github>
             <Email>
-              <a href="/">
+              <EmailLink onClick={() => handleCopyClipBoard('rkdus1357@gmail.com')}>
                 <img src={`${process.env.PUBLIC_URL}/images/contact-mail.png`} alt="email" />
-              </a>
+              </EmailLink>
               <p>rkdus1357@gmail.com</p>
             </Email>
           </Contact>
