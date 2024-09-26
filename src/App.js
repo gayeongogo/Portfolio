@@ -256,11 +256,19 @@ const Project = styled.article`
 const Cards = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: 1.7rem;
 `
 const Card = styled.div`
   background: #343439;
   border-radius: 1rem;
+  cursor: pointer;
+  position: relative;
+  bottom: 0;
+  transition: ease-in-out .3s;
+  &:hover {
+    bottom: 7px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
 `
 const CardImg = styled.div`
   width: 100%;
