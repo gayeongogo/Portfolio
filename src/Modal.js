@@ -96,8 +96,9 @@ const ModalImg = styled.div`
   aspect-ratio: 3 / 2;
   overflow: hidden;
   margin: 1rem 0;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   img{
-    border-radius: 1rem;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -141,7 +142,7 @@ export default function Modal({ selectedCard, onClose }) {
         <>하트 모양의 아이콘을 클릭해 사용자가 카페에 대한 평점을 입력할 수 있는 <B>인터렉티브 UI</B> 구현</>
       ],
       keywords: ['개인', 'React', 'styled-components', 'Firebase'],
-      image: 'imsi.jpg',
+      image: 'project_diary.png',
     },
     'Card 2': {
       title: '매거진 메이커',
@@ -163,7 +164,7 @@ export default function Modal({ selectedCard, onClose }) {
         <><B>html2canvas 라이브러리</B>를 사용하여 현재 편집한 콘텐츠를 간단하게 캡쳐하고 이미지로 변환하여 저장</>,
       ],
       keywords: ['개인', 'HTML', 'styled-components', 'Javascript'],
-      image: 'imsi.jpg',
+      image: 'project_magazine.png',
     },
     'Card 3': {
       title: '법무법인 사이트 리뉴얼',
@@ -184,7 +185,7 @@ export default function Modal({ selectedCard, onClose }) {
         <>특정 페이지의 내비게이션 메뉴 선택 시 <B>window.scrollto</B>를 활용하여 해당 섹션으로 부드럽게 이동하며, 스크롤을 통해 상하단 콘텐츠를 탐색할 수 있는 기능 구현</>,
       ],
       keywords: ['팀', '외주', 'React', 'Tailwind CSS', '반응형'],
-      image: 'imsi.jpg',
+      image: 'project_law.png',
     },
     'Card 4': {
       title: '북마크 안드로이드 앱',
@@ -205,7 +206,7 @@ export default function Modal({ selectedCard, onClose }) {
         <>로그인 및 회원가입 페이지에서 <B>정규 표현식</B>을 사용해 입력된 데이터의 유효성을 검사하고 오류 메시지를 제공</>,
       ],
       keywords: ['팀', 'React Native', 'Tailwind CSS',],
-      image: 'imsi.jpg',
+      image: 'project_bookmark.png',
     },
     'Card 5': {
       title: '재생에너지 거래 중개 플랫폼',
@@ -224,7 +225,7 @@ export default function Modal({ selectedCard, onClose }) {
         <>회원가입 화면에서 <B>진행률을 단계별로 표시</B>하여 사용자의 현재 절차와 남은 절차를 시각적으로 명확히 파악할 수 있도록 구현</>,
       ],
       keywords: ['팀', 'React', 'Tailwind CSS',],
-      image: 'imsi.jpg',
+      image: 'project_rec.jpg',
     },
     'Card 6': {
       title: '개인 포트폴리오',
@@ -244,7 +245,7 @@ export default function Modal({ selectedCard, onClose }) {
         <>이메일 버튼 클릭 시 <B>navigator.clipboard.writeText</B>를 사용해 사용자가 클릭 한 번으로 이메일 주소를 손쉽게 복사할 수 있는 기능 구현</>,
       ],
       keywords: ['개인', 'React', 'styled-components'],
-      image: 'imsi.jpg',
+      image: 'project_portfolio.png',
     },
   };
 

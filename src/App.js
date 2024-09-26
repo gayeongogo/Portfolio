@@ -682,7 +682,7 @@ function App() {
               >
                 <Card onClick={() => handleCardClick('Card 1')}>
                   <CardImg>
-                    <img src={`${process.env.PUBLIC_URL}/images/imsi.jpg`} alt='컵일기'/>
+                    <img src={`${process.env.PUBLIC_URL}/images/project_diary.png`} alt='컵일기'/>
                   </CardImg>
                   <CardInfo>
                     <h3>컵일기</h3>
@@ -698,7 +698,7 @@ function App() {
                 </Card>
                 <Card onClick={() => handleCardClick('Card 2')}>
                   <CardImg>
-                    <img src={`${process.env.PUBLIC_URL}/images/imsi.jpg`} alt='매거진 메이커'/>
+                    <img src={`${process.env.PUBLIC_URL}/images/project_magazine.png`} alt='매거진 메이커'/>
                   </CardImg>
                   <CardInfo>
                     <h3>매거진 메이커</h3>
@@ -714,7 +714,7 @@ function App() {
                 </Card>
                 <Card onClick={() => handleCardClick('Card 3')}>
                   <CardImg>
-                    <img src={`${process.env.PUBLIC_URL}/images/imsi.jpg`} alt='법무법인 웹사이트 리뉴얼'/>
+                    <img src={`${process.env.PUBLIC_URL}/images/project_law.png`} alt='법무법인 웹사이트 리뉴얼'/>
                   </CardImg>
                   <CardInfo>
                     <h3>법무법인 웹사이트 리뉴얼</h3>
@@ -731,7 +731,7 @@ function App() {
                 </Card>
                 <Card onClick={() => handleCardClick('Card 4')}>
                   <CardImg>
-                    <img src={`${process.env.PUBLIC_URL}/images/imsi.jpg`} alt='북마크 안드로이드 앱'/>
+                    <img src={`${process.env.PUBLIC_URL}/images/project_bookmark.png`} alt='북마크 안드로이드 앱'/>
                   </CardImg>
                   <CardInfo>
                     <h3>북마크 안드로이드 앱</h3>
@@ -746,7 +746,7 @@ function App() {
                 </Card>
                 <Card onClick={() => handleCardClick('Card 5')}>
                   <CardImg>
-                    <img src={`${process.env.PUBLIC_URL}/images/imsi.jpg`} alt='에너지 거래 중개 사이트'/>
+                    <img src={`${process.env.PUBLIC_URL}/images/project_rec.jpg`} alt='에너지 거래 중개 사이트'/>
                   </CardImg>
                   <CardInfo>
                     <h3>에너지 거래 중개 사이트</h3>
@@ -761,7 +761,7 @@ function App() {
                 </Card>
                 <Card onClick={() => handleCardClick('Card 6')}>
                   <CardImg>
-                    <img src={`${process.env.PUBLIC_URL}/images/imsi.jpg`} alt='개인 포트폴리오 사이트'/>
+                    <img src={`${process.env.PUBLIC_URL}/images/project_portfolio.png`} alt='개인 포트폴리오 사이트'/>
                   </CardImg>
                   <CardInfo>
                     <h3>개인 포트폴리오 사이트</h3>
