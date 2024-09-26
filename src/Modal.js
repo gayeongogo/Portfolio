@@ -1,6 +1,16 @@
 import React from 'react'
 import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle';
+import { FaGithub, FaLink } from "react-icons/fa6";
+
+const IconGithub = styled(FaGithub)`
+  color: #EEEEEE;
+  margin: 0 5px 2px 0;
+`
+const IconLink = styled(FaLink)`
+  color: #EEEEEE;
+  margin: 0 5px 2px 0;
+`
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -28,16 +38,17 @@ const ModalContent = styled.div`
   }
   header {
     width: 100%;
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 2rem;
     background: #343439;
     color: #EEEEEE;
     text-align: center;
     h2 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       font-family: 'Pretendard-SemiBold';
-      margin-bottom: 7px;
+      margin-bottom: 10px;
     }
     h3 {
+      color: #A1A1A1;
       margin-bottom: 10px;
     }
   }
@@ -93,9 +104,9 @@ const MainDesc = styled.section`
 `
 const ModalImg = styled.div`
   width: 60%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 5 / 3;
   overflow: hidden;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   img{
@@ -109,6 +120,18 @@ const Feature = styled.div`
 `
 const LinkTo = styled.div`
   display: flex;
+  margin: 1rem 2rem;
+  a {
+    font-size: 14px;
+    color: #EEEEEE;
+    background: #222831;
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.2); */
+    border-radius: 2rem;
+    padding: 7px 10px;
+    &:first-child {
+      margin-right: 7px;
+    }
+  }
 `
 const B = styled.span`
   padding: .15rem .3rem;
@@ -121,7 +144,7 @@ export default function Modal({ selectedCard, onClose }) {
   const cardDetails = {
     'Card 1': {
       title: '컵일기',
-      period: '2023.06 - 2023.08',
+      period: '2024.06 - 2024.08',
       description: '카페 탐방 취미를 더욱 즐겁고 의미 있게 만들어 줄 수 있는 사이트를 구상했습니다. 보통의 리뷰는 객관적인 평가에 치중되지만, 일기와 함께 기록하면 그날의 감정과 분위기를 담아 더 특별한 의미를 만들 수 있습니다.',
       feature: [
         `다녀온 카페의 이름, 위치, 카페의 분위기, 메뉴, 서비스 등의 정보 입력`,
@@ -143,6 +166,8 @@ export default function Modal({ selectedCard, onClose }) {
       ],
       keywords: ['개인', 'React', 'styled-components', 'Firebase'],
       image: 'project_diary.png',
+      github: 'https://github.com/gayeongogo/Cafe',
+      url: 'https://diary-87df1.web.app/',
     },
     'Card 2': {
       title: '매거진 메이커',
@@ -165,9 +190,11 @@ export default function Modal({ selectedCard, onClose }) {
       ],
       keywords: ['개인', 'HTML', 'styled-components', 'Javascript'],
       image: 'project_magazine.png',
+      github: 'https://github.com/gayeongogo/magazine-maker',
+      url: 'https://gayeongogo.github.io/magazine-maker/',
     },
     'Card 3': {
-      title: '법무법인 사이트 리뉴얼',
+      title: '법무법인 웹사이트 리뉴얼',
       period: '2023.08 - 2023.09',
       description: '외주 프로젝트로 기존 페이지의 디자인과 구성 전반을 변화시키고 반응형 페이지로 리뉴얼을 진행했습니다. 클라이언트의 요구사항을 충족하며 웹 표준을 준수하여 제작하였습니다.',
       feature: [
@@ -186,6 +213,7 @@ export default function Modal({ selectedCard, onClose }) {
       ],
       keywords: ['팀', '외주', 'React', 'Tailwind CSS', '반응형'],
       image: 'project_law.png',
+      url: 'https://jdlawfirm.co.kr/',
     },
     'Card 4': {
       title: '북마크 안드로이드 앱',
@@ -228,8 +256,8 @@ export default function Modal({ selectedCard, onClose }) {
       image: 'project_rec.jpg',
     },
     'Card 6': {
-      title: '개인 포트폴리오',
-      period: '2023.08 - 2023.09',
+      title: '개인 포트폴리오 사이트',
+      period: '2024.08 - 2024.09',
       description: '자체적으로 제작한 개인 포트폴리오 사이트 입니다. 다양한 프로젝트와 경험을 효과적으로 나타내기 위해 직접 기획, 디자인하고 정보를 쉽게 전달할 수 있도록 전체적인 구상을 깊이 고민하며 구현했습니다.',
       feature: [
         '소개, 경력, 프로젝트 순으로 점층적으로 정보를 배치하여 단계적으로 경험과 역량을 쉽게 이해할 수 있도록 구성',
@@ -246,10 +274,12 @@ export default function Modal({ selectedCard, onClose }) {
       ],
       keywords: ['개인', 'React', 'styled-components'],
       image: 'project_portfolio.png',
+      github: 'https://github.com/gayeongogo/Portfolio',
+      url: 'https://gayeongogo.github.io/Portfolio/',
     },
   };
 
-  const { title, period, description, feature, Contribution, keywords, image} = cardDetails[selectedCard];
+  const { title, period, description, feature, Contribution, keywords, image, github, url} = cardDetails[selectedCard];
 
   return (
     <div>
@@ -257,8 +287,8 @@ export default function Modal({ selectedCard, onClose }) {
       <ModalOverlay onClick={onClose}>
         <ModalContent onClick={(e) => e.stopPropagation()}>
           <header>
-            <h2>{title}</h2>
             <h3>{period}</h3>
+            <h2>{title}</h2>
             <ul>
               {keywords.map((keyword, index) => (
                 <Keyword key={index}>{keyword}</Keyword>
@@ -267,13 +297,16 @@ export default function Modal({ selectedCard, onClose }) {
           </header>
           <main>
             <MainDesc>
-              <LinkTo>
-                <a href="https://github.com/gayeongogo/Cafe" target="_blank" rel="noreferrer noopener">github 바로가기</a>
-                <a href="https://github.com/gayeongogo/Cafe" target="_blank" rel="noreferrer noopener">배포 링크</a>
-              </LinkTo>
               <ModalImg>
                 <img src={`${process.env.PUBLIC_URL}/images/${image}`} alt="" />
               </ModalImg>
+              {(github || url) &&
+                <LinkTo>
+                  {github && <a href={github} target="_blank" rel="noreferrer noopener"><IconGithub/>github 바로가기</a>}
+                  {url && <a href={url} target="_blank" rel="noreferrer noopener"><IconLink/>배포 링크</a>}
+                </LinkTo>
+              }
+              
               <p>{description}</p>
             </MainDesc>
             <Feature>

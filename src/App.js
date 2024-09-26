@@ -3,7 +3,15 @@ import Modal from './Modal';
 import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle';
 import { motion } from "framer-motion"
+import { SiVelog } from "react-icons/si";
+import { FaGithub } from "react-icons/fa6";
 
+const IconGithub = styled(FaGithub)`
+  margin-right: 7px;
+`
+const IconVelog = styled(SiVelog)`
+  margin-right: 7px;
+`
 const Container = styled.div`
   width: 1024px;
   height: 100%;
@@ -24,17 +32,31 @@ const Header = styled(motion.header)`
   font-size: 25px;
   div {
     position: relative;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
     &:first-child{
-      margin-right: 20px;
+      margin-right: 1.5rem;
+    }
+    &:hover{
+      color: #222222;
+    }
+    &:hover::after{
+      width: 100%;
+      left: 0%;
     }
     &::after {
       content: "";
-      position: absolute;
-      left: 0px;
+      background: #222222;
+      pointer-events: none;
       bottom: -10px;
+      left: 50%;
+      position: absolute;
+      width: 0%;
       height: 3px;
-      width: 100%;
-      background: #222831;
+      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition-duration: 400ms;
+      transition-property: width, left;
     }
   }
 `
@@ -48,7 +70,7 @@ const TextArea = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;  
-  line-height: 370%;
+  line-height: 380%;
   p {
     font-size: 45px;
   }
@@ -482,8 +504,8 @@ function App() {
               visible
             }}
           >
-            <div>github</div>
-            <div>velog</div>
+            <a href="https://github.com/gayeongogo" target="_blank" rel="noreferrer noopener"><div><IconGithub/>github</div></a>
+            <a href="https://velog.io/@gayeongogo/posts" target="_blank" rel="noreferrer noopener"><div><IconVelog/>velog</div></a>
           </Header>
           <Main>
             <TextArea
@@ -694,8 +716,8 @@ function App() {
                   </CardImg>
                   <CardInfo>
                     <h3>컵일기</h3>
-                    <span>2024.06 &#126; 2024.07</span>
-                    <p>그날의 일기를 다녀온 카페에 대한 평가와 함께 기록할 수 있는 사이트 입니다.</p>
+                    <span>2024.06 &#126; 2024.08</span>
+                    <p>카페 탐방 취미를 위해 카페 리뷰와 일기를 함께 기록할 수 있는 사이트입니다.</p>
                     <ul>
                       <Keyword $keyword="개인">개인</Keyword>
                       <Keyword $keyword="React">React</Keyword>
@@ -710,8 +732,8 @@ function App() {
                   </CardImg>
                   <CardInfo>
                     <h3>매거진 메이커</h3>
-                    <span>2024.06 &#126; 2024.07</span>
-                    <p>SNS용 매거진을 쉽고 빠르게 제작할 수 있는 사이트 입니다.</p>
+                    <span>2024.04 &#126; 2024.05</span>
+                    <p>SNS 매거진을 쉽고 빠르게 제작할 수 있는 사이트입니다.</p>
                     <ul>
                       <Keyword $keyword="개인">개인</Keyword>
                       <Keyword $keyword="HTML">HTML</Keyword>
@@ -726,7 +748,7 @@ function App() {
                   </CardImg>
                   <CardInfo>
                     <h3>법무법인 웹사이트 리뉴얼</h3>
-                    <span>2024.06 &#126; 2024.07</span>
+                    <span>2023.08 &#126; 2023.09</span>
                     <p>기존 사이트를 리디자인하고 반응형 페이지로 개선하는 프로젝트에 참여했습니다.</p>
                     <ul>
                       <Keyword $keyword="팀">팀</Keyword>
@@ -743,7 +765,7 @@ function App() {
                   </CardImg>
                   <CardInfo>
                     <h3>북마크 안드로이드 앱</h3>
-                    <span>2024.06 &#126; 2024.07</span>
+                    <span>2023.11 &#126; 2024.01</span>
                     <p>관심있는 링크를 저장하고 분류별로 모아 관리할 수 있는 북마크 앱 개발에 참여했습니다.</p>
                     <ul>
                       <Keyword $keyword="팀">팀</Keyword>
@@ -754,12 +776,12 @@ function App() {
                 </Card>
                 <Card onClick={() => handleCardClick('Card 5')}>
                   <CardImg>
-                    <img src={`${process.env.PUBLIC_URL}/images/project_rec.jpg`} alt='에너지 거래 중개 사이트'/>
+                    <img src={`${process.env.PUBLIC_URL}/images/project_rec.jpg`} alt='재생에너지 거래 중개 플랫폼'/>
                   </CardImg>
                   <CardInfo>
-                    <h3>에너지 거래 중개 사이트</h3>
-                    <span>2024.06 &#126; 2024.07</span>
-                    <p>정부 공동투자형 개발 사업으로 진행된 에너지 거래 중개 사이트 개발에 참여했습니다.</p>
+                    <h3>재생에너지 거래 중개 플랫폼</h3>
+                    <span>2023.09 &#126; 2024.01</span>
+                    <p>재생에너지 전력 거래를 위한 REC 중개 플랫폼 개발에 참여했습니다.</p>
                     <ul>
                       <Keyword $keyword="팀">팀</Keyword>
                       <Keyword $keyword="React Native">React Native</Keyword>
@@ -773,7 +795,7 @@ function App() {
                   </CardImg>
                   <CardInfo>
                     <h3>개인 포트폴리오 사이트</h3>
-                    <span>2024.06 &#126; 2024.07</span>
+                    <span>2024.08 &#126; 2024.09</span>
                     <p>다양한 프로젝트와 경험을 담아낸 개인 포트폴리오 사이트 입니다.</p>
                     <ul>
                       <Keyword $keyword="개인">개인</Keyword>
@@ -814,7 +836,7 @@ function App() {
             }}
           >
             <Github>
-              <a href="https://github.com">
+              <a href="https://github.com/gayeongogo" target="_blank" rel="noreferrer noopener">
                 <img src={`${process.env.PUBLIC_URL}/images/contact-github.png`} alt="github"/>
               </a>
             </Github>
