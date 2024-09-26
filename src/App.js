@@ -520,6 +520,12 @@ function App() {
     setSelectedCard(null);
   };
 
+  if (isModalOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+
   return (
     <div>
       <GlobalStyle/>
