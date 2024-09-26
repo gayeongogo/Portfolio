@@ -64,21 +64,40 @@ const Main = styled.main`
   flex: 1;
   display: flex;
   justify-content: space-between;
-  padding: 0 3rem;
+  padding: 0 1rem;
 `
 const TextArea = styled(motion.div)`
+  width: 55%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;  
-  line-height: 380%;
   p {
-    font-size: 45px;
+    margin-bottom: 8px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  div {
+    font-size: 28px;
+    &:last-child {
+      font-size: 20px;
+      margin-top: 2rem;
+      line-height: 170%;
+      font-family: 'Pretendard-Medium';
+      span {
+        font-size: 18px;
+        padding: .15rem .3rem;
+        background: #ECECEC;
+        border-radius: .25rem;
+        font-family: 'Pretendard-SemiBold';
+      }
+    }
   }
   span {
-    font-size: 32px;
+    font-size: 45px;
   }
   b {
-    font-size: 55px;
+    font-size: 60px;
   }
 `
 const ImageArea = styled(motion.div)`
@@ -137,7 +156,7 @@ const Values = styled(motion.article)`
 `
 const B = styled.span`
   font-size: 1.4rem;
-  padding: .2rem .4rem;
+  padding: .15rem .3rem;
   background: #222222;
   border-radius: .25rem;
 `;
@@ -523,14 +542,21 @@ function App() {
             <TextArea
               variants={itemVariants}
             >
-              <p><span>안녕하세요.</span>
-              <br/>매일의 작은 성공을 실천하며,
-              <br/>포기하지 않는 <span>프론트엔드 개발자</span>
-              <br/><b>고가연입니다.</b></p>
+              <div>
+                <p><span>매일의 작은 성공</span>을 쌓아가며,</p>
+                <p>포기하지 않고 <span>도전</span>하는 프론트엔드 개발자</p>
+                <p><b>고가연입니다.</b></p>
+                
+              </div>
+              <div>사용자와 상호작용하는 <span>직관적</span>이고 <span>인터랙티브</span>한 화면을 
+              <br/>개발하는데 열정을 가지고 있습니다.
+              빠르게 변화하는 환경에서도 유연하게 적응하기 위해 <span>새로운 기술</span>을 학습하며,
+              <br/><span>사용자 경험을 향상</span>시키는 인터페이스 구현에 주력하는 개발자로서
+              <br/>성장하고 있습니다.</div>
             </TextArea>
             <ImageArea
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0,}}
+              whileInView={{ opacity: 1,}}
               viewport={{ once: false }}
               transition={{
                 ease: 'easeInOut',
