@@ -107,18 +107,20 @@ const AboutMe = styled(motion.section)`
 `
 
 const Values = styled(motion.article)`
-  font-size: 24px;
+  font-size: 1.5rem;
   position: relative;
   display: flex;
   justify-content: center;
   ul{
+    width: 70%;
     background: #343439;
     padding: 40px 50px 40px 60px;
     list-style: disc;
     border-radius: 1rem;
     margin-left: -7rem;
+    line-height: 140%;
     li {
-      margin-bottom: 15px;
+      padding: 10px 0 10px 0;
       &:last-child {
         margin-bottom: 0;
       }
@@ -127,15 +129,25 @@ const Values = styled(motion.article)`
   div {
     position: absolute;
     bottom: 0;
-    right: -2.5rem;
+    right: -5.5rem;
     img {
       width: 72%;
     }
   }
 `
+const B = styled.span`
+  font-size: 1.4rem;
+  padding: .2rem .4rem;
+  background: #222222;
+  border-radius: .25rem;
+`;
 const Skill = styled(motion.article)`
   padding: 6rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   div {
+    width: 90%;
     background: #343439;
     border-radius: 1rem;
     margin-bottom: 2rem;
@@ -545,10 +557,11 @@ function App() {
             }}
           >
             <ul>
-              <li>개발 과정에서 항상 사용자의 입장을 생각해요.</li>
-              <li>꾸준한 기록으로 성장의 발판을 만들어요.</li>
-              <li>빠른 적응력과 흡수력으로 <br/>배움과 도전을 두려워하지 않아요.</li>
-              <li>React, Javascript 그리고 UX Design을 <br/>지속적으로 공부합니다.</li>
+              <li>항상 <B>사용자의 입장</B>을 최우선으로 생각하며, <B>사용자 경험 향상</B>을 위해 끊임없이 고민합니다.</li>
+              <li>개발 과정에서 팀원 간의 원활한 <B>소통과 협업</B>을 중요시하고, <br/><B>피드백</B>을 소중히 여기며 적극 반영합니다.</li>
+              <li><B>꾸준한 기록</B>으로 지속적인 성장의 발판을 만들어 나갑니다.</li>
+              <li><B>빠른 적응력</B>과 <B>흡수력</B>으로 배움과 도전을 두려워하지 않습니다.</li>
+              <li><B>React</B>, <B>Javascript</B> 그리고 <B>UX Design</B>을 공부하며 <br/>역량을 강화하고 있습니다.</li>
             </ul>
             <div>
               <img src={`${process.env.PUBLIC_URL}/images/mimoticon.png`} alt='미모티콘'/>
@@ -614,7 +627,7 @@ function App() {
             >
               <div>
                 <b>정보처리기사</b>
-                <p>과학기술정보통신부, 2024년 9월 취득</p>
+                <p>한국산업인력공단, 2024년 9월 취득</p>
               </div>
               <div>
                 <b>GTQ&#40;그래픽기술자격&#41; 1급</b>
