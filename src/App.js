@@ -80,9 +80,9 @@ const TextArea = styled(motion.div)`
   div {
     font-size: 28px;
     &:last-child {
-      font-size: 20px;
+      font-size: 18px;
       margin-top: 2rem;
-      line-height: 170%;
+      line-height: 180%;
       font-family: 'Pretendard-Medium';
       span {
         font-size: 18px;
@@ -554,11 +554,13 @@ function App() {
                 <p><b>고가연입니다.</b></p>
                 
               </div>
-              <div>사용자와 상호작용하는 <span>직관적</span>이고 <span>인터랙티브</span>한 화면을 
-              <br/>개발하는데 열정을 가지고 있습니다. 빠르게 변화하는 환경에서도 
-              <br/>유연하게 적응하기 위해 <span>새로운 기술</span>을 학습하며,
-              <br/><span>사용자 경험을 향상</span>시키는 인터페이스 구현에 주력하는 개발자로서
-              <br/>성장하고 있습니다.</div>
+              <div>사용자가 자연스럽게 상호작용할 수 있는 <span>인터페이스</span>와 
+                <br/><span>애니메이션</span> 구현에 열정을 가지고 있습니다.
+                <br/>개발자의 가치는 <span>소통과 협업</span> 속에서 시너지를 창출하는 것이라
+                <br/>믿습니다. 빠르게 변화하는 환경에서도 유연하게 적용할 수 있는 
+                <br/><span>새로운 기술</span>을 학습하며, 문제 해결을 위해 <span>끊임없이 탐구하는 자세</span>로
+                <br/>성장하고 있습니다.
+              </div>
             </TextArea>
             <ImageArea
               initial={{ opacity: 0,}}
