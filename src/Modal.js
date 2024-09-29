@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle';
 import { FaGithub, FaLink } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 
 const IconGithub = styled(FaGithub)`
   color: #EEEEEE;
@@ -10,6 +11,10 @@ const IconGithub = styled(FaGithub)`
 const IconLink = styled(FaLink)`
   color: #EEEEEE;
   margin: 0 5px 2px 0;
+`
+const IconClose = styled(IoClose)`
+  color: #EEEEEE;
+  font-size: 2rem;
 `
 
 const ModalOverlay = styled.div`
@@ -26,6 +31,7 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
+  position: relative;
   width: 1024px;
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
   max-height: 90vh;
@@ -87,6 +93,13 @@ const ModalContent = styled.div`
     }
   }
 `;
+const CloseBtn = styled.button`
+  position: fixed;
+  padding: 1.5rem;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+`
 const Keyword = styled.li`
   font-size: 15px;
   display: inline-block;
@@ -326,6 +339,7 @@ export default function Modal({ selectedCard, onClose }) {
               </ul>
             </div>
           </main>
+          <CloseBtn onClick={onClose}><IconClose/></CloseBtn>
         </ModalContent>
       </ModalOverlay>
     </div>
