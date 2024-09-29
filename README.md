@@ -2,6 +2,10 @@
 
 <br>
 
+<img src="https://github.com/user-attachments/assets/988bf618-9cd0-4b4b-aab8-8f799597f5e5" width="300px">
+
+<br>
+
 📅2024.08 - 2024.09
 
 `React.js` `styled-components`
