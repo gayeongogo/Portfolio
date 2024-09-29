@@ -9,6 +9,8 @@
 <br>
 
 📅2024.08 - 2024.09
+<br>
+🔗https://gayeongogo.github.io/Portfolio/
 
 `React.js` `styled-components`
 
