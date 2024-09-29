@@ -4,13 +4,17 @@ import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle';
 import { motion } from "framer-motion"
 import { SiVelog } from "react-icons/si";
-import { FaGithub } from "react-icons/fa6";
+import { FaGithub, FaAngleUp } from "react-icons/fa6";
 
 const IconGithub = styled(FaGithub)`
   margin-right: 7px;
 `
 const IconVelog = styled(SiVelog)`
   margin-right: 7px;
+`
+const IconTop = styled(FaAngleUp)`
+  color: #222831;
+  font-size: 1.5rem;
 `
 const Container = styled.div`
   width: 1024px;
@@ -453,6 +457,39 @@ const Footer = styled.footer`
   color: #C6C6C6;
 `
 
+const TopBtn = styled.button`
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  div {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 0px 5px rgba(0,0,0,0.2);
+    &:hover ~ p {
+      bottom: 0;
+      opacity: 1;
+    }
+  }
+  p {
+    margin-top: 7px;
+    color: #A1A1A1;
+    font-size: 14px;
+    position: relative;
+    bottom: -3px;
+    opacity: 0;
+    transition: .3s;
+  }
+`
+
 function App() {
   const careerRef = useRef(null);
   const projectRef = useRef(null);
@@ -465,7 +502,7 @@ function App() {
     const observerOptions = {
       root: null, // 뷰포트 기준으로 감지
       rootMargin: '0px',
-      threshold: 0.1, // 섹션의 30%가 보이면 활성화
+      threshold: 0.1, // 섹션의 10%가 보이면 활성화
     }
     
     const observer = new IntersectionObserver((entries) => {
@@ -526,9 +563,19 @@ function App() {
     document.body.style.overflow = 'auto';
   }
 
+  const haddleTopBtn = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  }
+
   return (
     <div>
       <GlobalStyle/>
+      <TopBtn onClick={haddleTopBtn}>
+        <div><IconTop/></div>
+        <p>Back to Top</p>
+      </TopBtn>
       <Intro
         initial="hidden"
         whileInView="visible"
