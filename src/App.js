@@ -667,7 +667,7 @@ function App() {
                 <li><img src={`${process.env.PUBLIC_URL}/images/file-type-html.svg`} alt='HTML5'/>HTML5</li>
                 <li><img src={`${process.env.PUBLIC_URL}/images/file-type-css.svg`} alt='CSS3'/>CSS3</li>
                 <li><img src={`${process.env.PUBLIC_URL}/images/file-type-styled.svg`} alt='styled-components'/>styled-components</li>
-                <li><img src={`${process.env.PUBLIC_URL}/images/tailwind-css.svg`} alt='Tailwind CSS'/>Tailwind CSS</li>
+                <li><img style={{marginTop: '5px'}} src={`${process.env.PUBLIC_URL}/images/tailwind-css.svg`} alt='Tailwind CSS'/>Tailwind CSS</li>
                 <li><img src={`${process.env.PUBLIC_URL}/images/markdown.svg`} alt='Markdown'/>Markdown</li>
                 <li><img src={`${process.env.PUBLIC_URL}/images/github.svg`} alt='Github'/>Github</li>
                 <li><img src={`${process.env.PUBLIC_URL}/images/figma.svg`} alt='Figma'/>Figma</li>
