@@ -642,7 +642,7 @@ function App() {
               <li>개발 과정에서 팀원 간의 원활한 <B>소통과 협업</B>을 중요시하고, <br/><B>피드백</B>을 소중히 여기며 적극 반영합니다.</li>
               <li><B>꾸준한 기록</B>으로 지속적인 성장의 발판을 만들어 나갑니다.</li>
               <li><B>빠른 적응력</B>과 <B>흡수력</B>으로 배움과 도전을 두려워하지 않습니다.</li>
-              <li><B>React</B>, <B>Javascript</B> 그리고 <B>UX Design</B>을 공부하며 <br/>역량을 강화하고 있습니다.</li>
+              <li><B>React</B>, <B>Javascript</B> 그리고 <B>UI/UX Design</B>을 공부하며 <br/>역량을 강화하고 있습니다.</li>
             </ul>
             <div>
               <img src={`${process.env.PUBLIC_URL}/images/mimoticon.png`} alt='미모티콘'/>
@@ -753,7 +753,7 @@ function App() {
                   x: { duration: .7 },
                 }}
               >
-                <span>2023.07 &#126; 2024.01</span>
+                <span>2023.07 &#126; 2024.02</span>
                 <h3>(주)디로그</h3>
                 <h4>디자인, 퍼블리싱, 프론트엔드 개발 담당</h4>
                 <ul>
@@ -890,7 +890,7 @@ function App() {
                   <CardInfo>
                     <h3>개인 포트폴리오 사이트</h3>
                     <span>2024.08 &#126; 2024.09</span>
-                    <p>다양한 프로젝트와 경험을 담아낸 개인 포트폴리오 사이트 입니다.</p>
+                    <p>다양한 프로젝트와 경험을 담아낸 개인 포트폴리오 사이트입니다.</p>
                     <ul>
                       <Keyword $keyword="개인">개인</Keyword>
                       <Keyword $keyword="React">React</Keyword>
