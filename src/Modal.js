@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle';
 import { FaGithub, FaLink } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
+import ImageModal from './ImageModal';
 
 const IconGithub = styled(FaGithub)`
   color: #EEEEEE;
@@ -131,6 +132,9 @@ const ModalImg = styled.div`
 const Feature = styled.div`
   margin-bottom: 2rem;
 `
+const Contribution = styled.div`
+  margin-bottom: 2rem;
+`
 const LinkTo = styled.div`
   display: flex;
   margin: 1rem 2rem;
@@ -151,7 +155,36 @@ const B = styled.span`
   background: #ECECEC;
   border-radius: .25rem;
   font-family: 'Pretendard-Medium';
-`;
+`
+const Screen = styled.div`
+  span {
+    display: block;
+    margin: 1rem;
+  }
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+`
+const ImageArea = styled.div`
+  flex-basis: calc(25% - 14px);
+  height: 120px;
+  margin: 7px 7px 25px 7px;
+  border: 1px solid #EEEEEE;
+  cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`
+const ImgDesc = styled.div`
+  padding: 5px;
+  text-align: center;
+  color: #888888;
+  font-size: 14px;
+`
+
 
 export default function Modal({ selectedCard, onClose }) {
   const cardDetails = {
@@ -166,7 +199,7 @@ export default function Modal({ selectedCard, onClose }) {
         '날짜별 일기 작성 및 글 등록, 수정, 삭제 기능',
         '체험 사용자는 브라우저에서 데이터를 유지할 수 있고, 이후 로그인 시 데이터를 서버로 전송 가능',
       ],
-      Contribution: [
+      contribution: [
         <><B>figma</B>를 사용하여 전반적인 디자인 및 스토리보드 구성</>,
         <><B>Firebase</B>를 사용하여 서버 CRUD 기능을 신속하게 구현</>,
         <>회원가입 시 <B>Firebase 인증 기능</B>을 활용해 <B>switch case문</B>으로 다양한 오류 사항의 유효성을 검사하여 처리</>,
@@ -181,6 +214,8 @@ export default function Modal({ selectedCard, onClose }) {
       image: 'project_diary.png',
       github: 'https://github.com/gayeongogo/Cafe',
       url: 'https://diary-87df1.web.app/',
+      screen: ['diary1','diary2', 'diary3', 'diary4', 'diary5'],
+      screenDesc: ['메인 화면(로그아웃ver)','메인 화면(로그인ver)', '메인 화면 모달창', '글 작성 화면(작성 전)', '글 작성 화면(작성 후)']
     },
     'Card 2': {
       title: '매거진 메이커',
@@ -194,7 +229,7 @@ export default function Modal({ selectedCard, onClose }) {
         '배경은 랜덤 색상 또는 사용자가 원하는 이미지로 설정할 수 있으며, 가독성을 위해 배경 레이어도 추가 선택 가능',
         '사용자가 편집한 매거진 이미지를 즉시 이미지 파일로 저장'
       ],
-      Contribution: [
+      contribution: [
         <>텍스트 입력 값을 <B>실시간으로 화면에 반영</B>하여 직관적인 사용 경험 제공</>,
         <>랜덤 색상 버튼 클릭 시 무작위 색상을 배경으로 설정하는 <B>randomRGB 함수</B>를 구현하여 사용자에게 다양성 제공</>,
         <>사용자가 <B>로컬 파일을 업로드</B> 하거나 <B>URL을 입력</B>하여 배경 이미지를 설정</>,
@@ -205,6 +240,8 @@ export default function Modal({ selectedCard, onClose }) {
       image: 'project_magazine.png',
       github: 'https://github.com/gayeongogo/magazine-maker',
       url: 'https://gayeongogo.github.io/magazine-maker/',
+      screen: ['magazine1','magazine2'],
+      screenDesc: ['메인 화면', '입력 및 버튼 인터렉션']
     },
     'Card 3': {
       title: '법무법인 웹사이트 리뉴얼',
@@ -216,7 +253,7 @@ export default function Modal({ selectedCard, onClose }) {
         '모바일, 태블릿, 데스크탑 환경에 대응 가능한 반응형 페이지로 개선',
         '법무법인 소식, 승소 사례, 법률 정보 등 탐색이 필요한 주요 페이지에 검색 기능 구현'
       ],
-      Contribution: [
+      contribution: [
         <><B>Figma</B>를 사용하여 법무법인 브랜드 아이덴티티를 반영한 비주얼 디자인과 UI/UX 흐름을 설계</>,
         <>기존의 어두운 색상 테마를 법무법인의 로고와 조화를 이루는 색상으로 재구성하여 일관된 브랜드 이미지를 강화</>,
         <><B>MediaQuery</B>를 활용하여 모든 화면 크기에서 최적화된 반응형 웹 페이지로 개선</>,
@@ -237,7 +274,7 @@ export default function Modal({ selectedCard, onClose }) {
         '해당 링크의 메타데이터를 통해 기본 정보를 자동으로 업로드하고, 사용자가 필요에 따라 원하는 방식으로 수정',
         '모바일 인터페이스에 맞는 내비게이션 설계와 입력 시트 사용',
       ],
-      Contribution: [
+      contribution: [
         <><B>Figma</B>를 사용하여 전체적인 디자인과 카테고리 관리 및 페이지 이동 흐름을 설계</>,
         <>글 작성 시 모바일 사용자에게 익숙한 <B>Bottom Sheet</B>를 사용해 화면 공간을 효율적으로 활용하고 직관적인 사용자 경험을 제공</>,
         <>여러 입력 시트 간 발생할 수 있는 오류를 줄이기 위해 <B>Context API</B>를 사용하여 Prop 전달 체계를 전역적으로 관리</>,
@@ -257,7 +294,7 @@ export default function Modal({ selectedCard, onClose }) {
         '발전소에서 생성된 재생에너지에 대한 인증서를 구매자와 판매자 간에 거래할 수 있는 플랫폼 제공',
         '판매자(발전소 보유자)와 구매자의 요구 사항에 따라 각각 다른 형태의 페이지 구현',
       ],
-      Contribution: [
+      contribution: [
         <><B>Tailwind CSS</B>를 사용하여 스타일을 빠르게 수정하고 재사용 가능하도록 구현</>,
         <>사용자가 상품의 위치, 등록순, 판매 상태 등을 드롭 다운 메뉴를 통해 선택하고 조회할 수 있는 <B>필터링 기능</B> 제공</>,
         <><B>Axios</B>를 사용해 상품 조회 시 데이터를 서버로부터 간결하고 직관적으로 요청한 데이터 통신 구현</>,
@@ -279,7 +316,7 @@ export default function Modal({ selectedCard, onClose }) {
         '프로젝트의 상세 내용을 확인할 수 있는 모달 창 제공',
         '프로젝트 작업 시의 기록물을 확인할 수 있도록 github, 개발블로그(velog) 바로가기 링크 첨부'
       ],
-      Contribution: [
+      contribution: [
         <><B>Figma</B>를 사용하여 전체적인 디자인 및 스토리보드 구성</>,
         <><B>Framer-motion</B> 라이브러리를 사용해 화면 사이트 전반에 애니메이션 효과를 적용하여 부드러운 인터랙션 경험을 제공</>,
         <><B>Intersection Observer API</B>를 사용하여 Career과 Project 화면 간 스크롤에 따라 내비게이션 메뉴의 활성화 상태가 자동으로 변경되도록 구현</>,
@@ -289,10 +326,25 @@ export default function Modal({ selectedCard, onClose }) {
       image: 'project_portfolio.png',
       github: 'https://github.com/gayeongogo/Portfolio',
       url: 'https://gayeongogo.github.io/Portfolio/',
+      screen: ['portfolio1','portfolio2', 'portfolio3', 'portfolio4', 'portfolio5', 'portfolio6', 'portfolio7'],
+      screenDesc: ['메인 화면', '소개 화면', '기술 스택 화면', '자격증 화면', '경력 화면', '프로젝트 화면', '프로젝트 모달창']
     },
   };
 
-  const { title, period, description, feature, Contribution, keywords, image, github, url} = cardDetails[selectedCard];
+  const { title, period, description, feature, contribution, keywords, image, github, url, screen, screenDesc} = cardDetails[selectedCard];
+
+  const [isImgModalOpen, setIsImgModalOpen] = useState(false);
+  const [selectedImg, setSelectedImg] = useState(null);
+
+  const handleImgClick = (item) => {
+    setSelectedImg(item);
+    setIsImgModalOpen(true);
+  };
+
+  const closeImgModal = () => {
+    setIsImgModalOpen(false);
+    setSelectedImg(null);
+  };
 
   return (
     <div>
@@ -330,18 +382,33 @@ export default function Modal({ selectedCard, onClose }) {
                 ))}
               </ul>
             </Feature>
-            <div>
+            <Contribution>
               <h4>🙋‍♀️Contribution</h4>
               <ul>
-              {Contribution.map((item, index) => (
+              {contribution.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
               </ul>
-            </div>
+            </Contribution>
+            {screen &&
+              <Screen>
+                <h4>💻작업 화면</h4>
+                <span>*이미지 클릭 시 확대됩니다.</span>
+                <div>
+                  {screen.map((item, index) => (
+                    <ImageArea key={index} onClick={() => handleImgClick(item)}>
+                      <img src={`${process.env.PUBLIC_URL}/images/${item}.png`} alt={`screen ${index + 1}`} />
+                      {screenDesc && <ImgDesc>{screenDesc[index]}</ImgDesc>}
+                    </ImageArea>
+                  ))}
+                </div>
+              </Screen>
+            }
           </main>
           <CloseBtn onClick={onClose}><IconClose/></CloseBtn>
         </ModalContent>
       </ModalOverlay>
+      {isImgModalOpen && <ImageModal selectedImg={selectedImg} onClose={closeImgModal} />}
     </div>
   )
 }
