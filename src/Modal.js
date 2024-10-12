@@ -63,24 +63,6 @@ const ModalContent = styled.div`
     color: #222831;
     background-color: #ffffff;
     padding: 2rem 5rem 5rem;
-    p {
-      line-height: 160%;
-      width: 60%;
-      text-align: center;
-      position: relative;
-      margin: 2rem 0;
-      &::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: -1.5rem;
-        transform: translate(-50%, 0);
-        height: 2px;
-        width: 3rem;
-        border-radius: 20px;
-        background: #222831;
-      }
-    }
     h4 {
       font-family: "Pretendard-SemiBold";
       font-size: 1.7rem;
@@ -115,6 +97,24 @@ const MainDesc = styled.section`
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
+  p {
+    line-height: 160%;
+    width: 60%;
+    text-align: center;
+    position: relative;
+    margin: 2rem 0;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -1.5rem;
+      transform: translate(-50%, 0);
+      height: 2px;
+      width: 3rem;
+      border-radius: 20px;
+      background: #222831;
+    }
+  }
 `;
 const ModalImg = styled.div`
   width: 60%;
@@ -134,6 +134,20 @@ const Feature = styled.div`
 `;
 const Contribution = styled.div`
   margin-bottom: 2rem;
+`;
+const Trouble = styled.div`
+  line-height: 150%;
+  margin-bottom: 2rem;
+  > div {
+    padding: 0 2rem;
+  }
+  h1 {
+    font-weight: bold;
+    padding: 7px 0;
+  }
+`;
+const Problem = styled.div`
+  margin-bottom: 1rem;
 `;
 const LinkTo = styled.div`
   display: flex;
@@ -221,14 +235,24 @@ export default function Modal({ selectedCard, onClose }) {
           있도록 개선
         </>,
         <>
-          특정 페이지의 내비게이션 메뉴 선택 시 <B>window.scrollto</B>를
-          활용하여 해당 섹션으로 부드럽게 이동하며, 스크롤을 통해 상하단
-          콘텐츠를 탐색할 수 있는 기능 구현
+          특정 페이지의 내비게이션 메뉴 선택 시 <B>와window.location.hash</B>와{" "}
+          <B>window.scrollto</B>를 활용하여 해당 섹션으로 부드럽게 이동하며,
+          스크롤을 통해 상하단 콘텐츠를 탐색할 수 있는 기능 구현
         </>,
       ],
       keywords: ["팀", "외주", "React", "Tailwind CSS", "반응형"],
       image: "project_law.png",
       url: "https://jdlawfirm.co.kr/",
+      problem:
+        "페이지가 로드되거나 창 크기가 변경될 때 이동하려는 섹션의 위치가 올바르게 감지되지 않아 부정확하게 이동하는 문제가 발생했습니다.",
+      solution: (
+        <div>
+          <B>window.location.hash</B> 값을 사용해 URL에서 해시를 가져온 후 해당
+          해시 값과 일치하는 요소를 찾도록 했습니다. 창 크기가 변경될 때도
+          스크롤을 조정하기 위해 resize 이벤트 리스너를 추가하고 컴포넌트가
+          언마운트될 때 제거하여 메모리 누수를 방지했습니다.
+        </div>
+      ),
     },
     "Card 2": {
       title: "북마크 안드로이드 앱",
@@ -272,6 +296,25 @@ export default function Modal({ selectedCard, onClose }) {
       ],
       keywords: ["팀", "React Native", "Tailwind CSS"],
       image: "project_bookmark.png",
+      problem:
+        "홈 화면에서 뒤로가기 버튼을 한 번 클릭 했을 때는 토스트 메시지를 보여주며, 2초 내 한 번 더 클릭 했을 때는 종료시키는 로직을 구현했습니다. 앱을 첫 실행한 후에는 이 과정이 잘 이루어졌지만, 앱이 종료된 후 재실행 시에는 한 번의 클릭으로 앱이 바로 종료되는 문제가 발생했습니다.",
+      solution: (
+        <div>
+          뒤로가기 버튼의 클릭 상태가 앱을 다시 실행했을 때도 true로 유지되어
+          생기는 문제였습니다. 앱이 재실행 되거나 포그라운드 상태일 때 클릭
+          상태를 항상 false로 설정하기 위한 방법을 모색했고, React Native의
+          Hook인 <B>useFocusEffect</B>를 사용해 이를 해결할 수 있었습니다.
+          <br />
+          <br />
+          useFocusEffect를 사용하면 화면이 포커스 될 때 특정 작업을 수행할 수
+          있고, 컴포넌트가 언마운트 되거나 포커스를 잃었을 때 cleanup 함수를
+          실행할 수 있습니다. 이를 바탕으로 cleanup 단계에서 클릭 상태를 false로
+          설정하여 앱이 재실행 될 때 두 번 눌러야 종료되는 기능을 유지할 수
+          있었습니다. 또한 useFocusEffect 내에서 <B>useCallback</B>을 사용해
+          상태값과 타이머가 변경될 때만 업데이트될 수 있도록 해 불필요한
+          렌더링을 방지하고 성능을 최적화 할 수 있었습니다.
+        </div>
+      ),
     },
     "Card 3": {
       title: "재생에너지 거래 중개 플랫폼",
@@ -417,7 +460,7 @@ export default function Modal({ selectedCard, onClose }) {
     },
     "Card 6": {
       title: "개인 포트폴리오 사이트",
-      period: "2024.08 - 2024.09",
+      period: "2024.08 ~",
       description:
         "자체적으로 제작한 개인 포트폴리오 사이트 입니다. 다양한 프로젝트와 경험을 효과적으로 나타내기 위해 직접 기획, 디자인하고 정보를 쉽게 전달할 수 있도록 전체적인 구상을 깊이 고민하며 구현했습니다.",
       feature: [
@@ -481,6 +524,8 @@ export default function Modal({ selectedCard, onClose }) {
     url,
     screen,
     screenDesc,
+    problem,
+    solution,
   } = cardDetails[selectedCard];
 
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
@@ -550,6 +595,19 @@ export default function Modal({ selectedCard, onClose }) {
                 ))}
               </ul>
             </Contribution>
+            {problem && solution && (
+              <Trouble>
+                <h4>🌱Trouble Shooting</h4>
+                <div>
+                  <Problem>
+                    <h1>[Problem]</h1>
+                    <div>{problem}</div>
+                  </Problem>
+                  <h1>[Solution]</h1>
+                  {solution}
+                </div>
+              </Trouble>
+            )}
             {screen && (
               <Screen>
                 <h4>💻작업 화면</h4>

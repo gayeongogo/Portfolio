@@ -525,7 +525,7 @@ function App() {
     },
     {
       title: "매거진 메이커",
-      period: "2024.06 - 2024.08",
+      period: "2024.04 - 2024.05",
       summary:
         "카페 탐방 취미를 위해 카페 리뷰와 일기를 함께 기록할 수 있는 사이트입니다.",
       keyword: ["개인", "HTML", "styled-components", "Javascript"],
@@ -1012,7 +1012,10 @@ function App() {
                 }}
               >
                 {cardData.map((item, index) => (
-                  <Card onClick={() => handleCardClick(`Card ${index + 1}`)}>
+                  <Card
+                    key={index}
+                    onClick={() => handleCardClick(`Card ${index + 1}`)}
+                  >
                     <CardImg>
                       <img
                         src={`${process.env.PUBLIC_URL}/images/${item.image}`}
@@ -1024,8 +1027,10 @@ function App() {
                       <span>{item.period}</span>
                       <p>{item.summary}</p>
                       <ul>
-                        {item.keyword.map((kw) => (
-                          <Keyword $keyword={kw}>{kw}</Keyword>
+                        {item.keyword.map((kw, index) => (
+                          <Keyword key={index} $keyword={kw}>
+                            {kw}
+                          </Keyword>
                         ))}
                       </ul>
                     </CardInfo>
