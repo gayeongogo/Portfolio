@@ -17,22 +17,27 @@ const IconTop = styled(FaAngleUp)`
   font-size: 1.5rem;
 `;
 const Container = styled.div`
-  width: 1024px;
-  height: 100%;
+  width: 100%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  padding: 0 15px;
+  overflow: hidden;
+  @media (min-width: 1024px) {
+    width: 1024px;
+    padding: 0;
+  }
 `;
 const Intro = styled(motion.section)`
+  width: 100%;
   height: 100vh;
   background: #ffffff;
   color: #222831;
   font-family: "Pretendard-SemiBold";
+  position: relative;
 `;
 const Header = styled(motion.header)`
   display: flex;
   justify-content: center;
-  padding-top: 50px;
+  padding: 20px 0;
   font-size: 25px;
   div {
     position: relative;
@@ -63,33 +68,43 @@ const Header = styled(motion.header)`
       transition-property: width, left;
     }
   }
+  @media (min-width: 1024px) {
+    padding: 40px 0;
+  }
 `;
 const Main = styled.main`
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 1rem;
+  height: 100%;
+  @media (min-width: 1024px) {
+    display: flex;
+  }
 `;
 const TextArea = styled(motion.div)`
-  width: 55%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-top: 2rem;
   p {
     margin-bottom: 8px;
     &:last-child {
       margin-bottom: 0;
     }
   }
+  span {
+    font-size: 24px;
+    font-family: "Pretendard-Bold";
+  }
+  b {
+    font-size: 30px;
+    font-family: "Pretendard-Bold";
+  }
   div {
-    font-size: 28px;
+    font-size: 18px;
+    text-align: center;
     &:last-child {
-      font-size: 18px;
+      display: none;
+      font-size: 16px;
       margin-top: 2rem;
       line-height: 180%;
       font-family: "Pretendard-Medium";
-      span {
-        font-size: 18px;
+      > span {
+        font-size: 16px;
         padding: 0.15rem 0.3rem;
         background: #ececec;
         border-radius: 0.25rem;
@@ -97,52 +112,79 @@ const TextArea = styled(motion.div)`
       }
     }
   }
-  span {
-    font-size: 45px;
-  }
-  b {
-    font-size: 60px;
+  @media (min-width: 1024px) {
+    margin-top: 4.5rem;
+    p {
+      font-size: 25px;
+    }
+    span {
+      font-size: 45px;
+    }
+    b {
+      font-size: 60px;
+    }
+    div {
+      text-align: start;
+      &:last-child {
+        font-size: 18px;
+        display: block;
+        > span {
+          font-size: 18px;
+        }
+      }
+    }
   }
 `;
 const ImageArea = styled(motion.div)`
-  display: flex;
-  justify-content: right;
-  align-items: flex-end;
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0);
   img {
-    width: 57%;
+    width: 12rem;
+  }
+  @media (min-width: 1024px) {
+    left: 75%;
+    img {
+      width: 15rem;
+    }
   }
 `;
 const Title = styled.h1`
-  font-size: 3.5rem;
+  font-size: 35px;
   font-family: "Pretendard-SemiBold";
   margin-bottom: 4rem;
+  @media (min-width: 1024px) {
+    font-size: 3.5rem;
+  }
 `;
 const SubTitle = styled.h2`
-  font-size: 45px;
+  font-size: 30px;
   font-family: "Pretendard-SemiBold";
   margin-bottom: 30px;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+  @media (min-width: 1024px) {
+    font-size: 45px;
+    margin-bottom: 4rem;
+  }
 `;
 const AboutMe = styled(motion.section)`
   padding: 6rem 0;
 `;
 
 const Values = styled(motion.article)`
-  font-size: 1.5rem;
+  font-size: 16px;
   position: relative;
-  display: flex;
-  justify-content: center;
   ul {
-    width: 70%;
+    width: 100%;
+    padding: 1rem;
     background: #343439;
-    padding: 40px 50px 40px 60px;
     list-style: disc;
     border-radius: 1rem;
-    margin-left: -7rem;
     line-height: 140%;
     li {
+      margin-left: 1rem;
       padding: 10px 0 10px 0;
       &:last-child {
         margin-bottom: 0;
@@ -150,19 +192,34 @@ const Values = styled(motion.article)`
     }
   }
   div {
+    display: none;
+    text-align: end;
     position: absolute;
     bottom: 0;
-    right: -5.5rem;
+    right: 0;
     img {
-      width: 72%;
+      width: 80%;
+    }
+  }
+  @media (min-width: 1024px) {
+    font-size: 1.5rem;
+    ul {
+      width: 90%;
+      padding: 40px 50px 40px 60px;
+    }
+    div {
+      display: block;
     }
   }
 `;
 const B = styled.span`
-  font-size: 1.4rem;
+  font-size: 16px;
   padding: 0.15rem 0.3rem;
   background: #222222;
   border-radius: 0.25rem;
+  @media (min-width: 1024px) {
+    font-size: 1.4rem;
+  }
 `;
 const Skill = styled(motion.article)`
   padding: 6rem 0;
@@ -170,139 +227,244 @@ const Skill = styled(motion.article)`
   flex-direction: column;
   align-items: center;
   div {
-    width: 90%;
+    width: 100%;
     background: #343439;
     border-radius: 1rem;
     margin-bottom: 2rem;
-    padding: 30px 0;
+    padding: 30px 12px;
     &:last-child {
       margin-bottom: 0;
     }
   }
   h3 {
     font-family: "Pretendard-Medium";
-    font-size: 30px;
+    font-size: 23px;
     text-align: center;
     margin-bottom: 2rem;
   }
   ul {
-    width: 65%;
-    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     li {
-      display: inline-block;
       border-radius: 7px;
       background: #eeeeee;
       color: #222831;
       padding: 7px 20px;
-      margin-bottom: 10px;
-      margin-right: 10px;
+      display: flex;
+      align-items: center;
       img {
-        width: 20px;
+        width: 18px;
         margin-right: 7px;
         vertical-align: top;
       }
     }
   }
+  @media (min-width: 1024px) {
+    div {
+      padding: 30px 14rem;
+    }
+    h3 {
+      font-size: 30px;
+    }
+    ul {
+      font-size: 18px;
+      img {
+        width: 20px;
+      }
+    }
+  }
 `;
 const Certi = styled.article`
-  div {
-    div {
-      font-family: "Pretendard-Medium";
-      width: 70%;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @media (min-width: 1024px) {
       align-items: center;
-      background: #343439;
-      border-radius: 1rem;
-      margin-bottom: 1rem;
-      padding: 20px 40px;
     }
+  }
+`;
+const CertiItem = styled.div`
+  font-family: "Pretendard-Medium";
+  align-items: center;
+  background: #343439;
+  border-radius: 1rem;
+  padding: 15px;
+  b {
+    display: inline-block;
+    font-size: 19px;
+    margin-bottom: 7px;
+  }
+  p {
+    color: #a1a1a1;
+  }
+  @media (min-width: 1024px) {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
     b {
       font-size: 1.7rem;
-    }
-    p {
-      color: #a1a1a1;
+      margin-bottom: 0;
     }
   }
 `;
 const Experience = styled.section`
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  @media (min-width: 1024px) {
+    width: 1024px;
+    padding: 0;
+  }
+`;
+const ExContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   main {
     flex-basis: 73%;
+  }
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 const Nav = styled.nav`
   position: sticky;
-  top: 3rem;
-  align-self: flex-start;
-  height: 100vh;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: "Pretendard-SemiBold";
+  background: #222831;
+  opacity: 0.9;
+  padding: 7px 0;
+  margin-bottom: 2rem;
+  @media (min-width: 1024px) {
+    height: 100vh;
+    top: 3rem;
+    display: block;
+    align-self: flex-start;
+  }
 `;
 const NavItem = styled.p`
-  font-size: 3.5rem;
-  cursor: pointer;
-  color: #eeeeee0d;
+  font-size: 28px;
+  color: #eeeeee45;
+  margin: 0 10px;
   transition: 0.3s;
-  ${({ $active }) =>
-    $active && "font-size: 3.8rem; transition: .3s; color: #EEEEEE;"};
+  cursor: pointer;
+
+  ${({ $active }) => $active && "transition: .3s; color: #EEEEEE;"};
+
+  @media (min-width: 1024px) {
+    font-size: 3.5rem;
+    margin: 0;
+    ${({ $active }) => $active && "font-size: 3.8rem;"};
+  }
 `;
 
 const Career = styled.article`
+  overflow: hidden;
   margin-bottom: 6rem;
+  font-family: "Pretendard-Medium";
   span {
-    font-size: 1.1rem;
+    font-size: 15px;
     display: inline-block;
     color: #a1a1a1;
-    font-family: "Pretendard-Medium";
     margin-bottom: 1.2rem;
   }
   h3 {
-    font-size: 1.7rem;
-    font-family: "Pretendard-Medium";
-    margin-bottom: 0.5rem;
+    font-size: 22px;
+    margin-bottom: 15px;
   }
   h4 {
-    font-size: 1.15rem;
-    font-family: "Pretendard-Medium";
+    font-size: 17px;
     margin-bottom: 2rem;
   }
   ul {
-    font-size: 1.1rem;
+    font-family: "Pretendard-Regular";
+    font-size: 16px;
     color: #a1a1a1;
     list-style: disc;
     padding-left: 1rem;
-    line-height: 230%;
+    line-height: 130%;
+    li {
+      margin: 7px 0;
+    }
+  }
+  @media (min-width: 1024px) {
+    span {
+      font-size: 1.1rem;
+    }
+    h3 {
+      font-size: 1.7rem;
+      font-size: 1.7rem;
+      font-family: "Pretendard-Medium";
+      font-size: 1.7rem;
+      font-family: "Pretendard-Medium";
+      margin-bottom: 0.5rem;
+    }
+    h4 {
+      font-size: 1.15rem;
+    }
+    ul {
+      font-size: 1.1rem;
+      line-height: 150%;
+      li {
+        margin: 12px 0;
+      }
+    }
   }
 `;
 const CareerBox = styled(motion.div)`
   background: #343439;
   border-radius: 1rem;
-  padding: 1.5rem 2rem;
+  padding: 1.2rem;
+  @media (min-width: 1024px) {
+    padding: 1.5rem 2rem;
+  }
 `;
 const Tech = styled(motion.div)`
   display: flex;
-  margin-top: 4.5rem;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+  gap: 10px;
   div {
-    width: 4.6rem;
-    height: 4.6rem;
+    width: 4rem;
+    height: 4rem;
     background: #222831;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 10px;
+    //margin-right: 10px;
     padding: 7px 5px;
     img {
-      width: 42px;
+      width: 35px;
       margin: auto 0;
     }
     p {
       display: flex;
-      font-size: 10px;
+      font-size: 9px;
+    }
+  }
+  @media (min-width: 1024px) {
+    margin-top: 4.5rem;
+    div {
+      width: 4.6rem;
+      height: 4.6rem;
+      img {
+        width: 42px;
+      }
+      p {
+        font-size: 10px;
+      }
     }
   }
 `;
@@ -311,8 +473,12 @@ const Project = styled.article`
 `;
 const Cards = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1;
   gap: 1.7rem;
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.7rem;
+  }
 `;
 const Card = styled.div`
   background: #343439;
@@ -328,7 +494,7 @@ const Card = styled.div`
 `;
 const CardImg = styled.div`
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   img {
     border-top-right-radius: 1rem;
@@ -339,27 +505,43 @@ const CardImg = styled.div`
   }
 `;
 const CardInfo = styled.div`
-  padding: 1rem 1.2rem;
+  padding: 12px;
   h3 {
     font-family: "Pretendard-Medium";
-    font-size: 1.4rem;
+    font-size: 18px;
     margin-bottom: 5px;
   }
   span {
     display: inline-block;
     color: #a1a1a1;
     margin-bottom: 14px;
+    font-size: 14px;
   }
   p {
-    font-size: 1.1rem;
+    font-size: 16px;
     margin-bottom: 17px;
     line-height: 130%;
   }
-  ul {
+  li {
+    display: inline-block;
+    border-radius: 7px;
+    padding: 5px 9px;
+    margin: 0 6px 6px 0;
+    font-size: 13px;
+  }
+  @media (min-width: 1024px) {
+    padding: 1rem 1.2rem;
+    h3 {
+      font-size: 1.4rem;
+    }
+    span {
+      font-size: 16px;
+    }
+    p {
+      font-size: 1.1rem;
+    }
     li {
-      display: inline-block;
-      border-radius: 7px;
-      padding: 5px 9px;
+      font-size: 16px;
       margin: 0 8px 8px 0;
     }
   }
@@ -406,15 +588,28 @@ const Thanks = styled.section`
   align-items: center;
   h1 {
     font-family: "Pretendard-Bold";
-    font-size: 10rem;
+    font-size: 60px;
     color: #27272a1a;
     margin-top: 10rem;
   }
   h2 {
     font-family: "Pretendard-SemiBold";
-    font-size: 1.5rem;
+    font-size: 18px;
     line-height: 135%;
-    margin: -1rem 0 5rem 0;
+    margin: 1rem 0 5rem 0;
+  }
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 10rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-size: 1.5rem;
+      line-height: 135%;
+      font-size: 1.5rem;
+      line-height: 135%;
+      margin: -1rem 0 5rem 0;
+    }
   }
 `;
 const Contact = styled(motion.div)`
@@ -436,31 +631,44 @@ const Email = styled.div`
   position: relative;
   p {
     position: absolute;
-    top: 50%;
-    left: 3.7rem;
+    left: 50%;
+    top: 3.7rem;
     opacity: 0;
-    transform: translate(0, -50%);
+    transform: translate(-50%, 0);
     transition: ease-in-out 0.3s;
+    @media (min-width: 1024px) {
+      left: 3.7rem;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
   }
 `;
 const EmailLink = styled.button`
   &:hover ~ p {
-    left: 4.7rem;
+    top: 4.7rem;
     opacity: 1;
     transition: ease-in-out 0.3s;
+    @media (min-width: 1024px) {
+      top: 50%;
+      left: 4.7rem;
+    }
   }
 `;
 const Footer = styled.footer`
-  font-size: 14px;
+  font-size: 11px;
   margin-bottom: 1.5rem;
   color: #c6c6c6;
+  @media (min-width: 1024px) {
+    font-size: 14px;
+  }
 `;
 
 const TopBtn = styled.button`
   position: fixed;
   bottom: 0;
   right: 0;
-  margin: 1.5rem;
+  z-index: 1001;
+  margin: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -486,6 +694,9 @@ const TopBtn = styled.button`
     bottom: -3px;
     opacity: 0;
     transition: 0.3s;
+  }
+  @media (min-width: 1024px) {
+    margin: 1.5rem;
   }
 `;
 
@@ -801,7 +1012,6 @@ function App() {
                 </li>
                 <li>
                   <img
-                    style={{ marginTop: "5px" }}
                     src={`${process.env.PUBLIC_URL}/images/tailwind-css.svg`}
                     alt="Tailwind CSS"
                   />
@@ -899,24 +1109,24 @@ function App() {
                 y: { duration: 0.7 },
               }}
             >
-              <div>
+              <CertiItem>
                 <b>정보처리기사</b>
                 <p>한국산업인력공단, 2024년 9월 취득</p>
-              </div>
-              <div>
+              </CertiItem>
+              <CertiItem>
                 <b>GTQ&#40;그래픽기술자격&#41; 1급</b>
                 <p>한국생산성본부, 2022년 3월 취득</p>
-              </div>
-              <div>
+              </CertiItem>
+              <CertiItem>
                 <b>컴퓨터활용능력 2급</b>
                 <p>대한상공회의소, 2022년 2월 취득</p>
-              </div>
+              </CertiItem>
             </motion.div>
           </Certi>
         </Container>
       </AboutMe>
-      <Container>
-        <Experience>
+      <Experience>
+        <ExContainer>
           <Nav>
             <NavItem
               $active={activeSection === "career"}
@@ -1042,8 +1252,8 @@ function App() {
               )}
             </Project>
           </main>
-        </Experience>
-      </Container>
+        </ExContainer>
+      </Experience>
       <Thanks>
         <div>
           <h1>Thank You!</h1>

@@ -22,7 +22,8 @@ const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  z-index: 2000;
+  width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -33,7 +34,8 @@ const ModalOverlay = styled.div`
 
 const ModalContent = styled.div`
   position: relative;
-  width: 1024px;
+  z-index: 2001;
+  width: calc(100% - 30px);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   max-height: 90vh;
   border-radius: 1rem;
@@ -45,12 +47,12 @@ const ModalContent = styled.div`
   }
   header {
     width: 100%;
-    padding: 1.2rem 2rem;
+    padding: 1rem;
     background: #343439;
     color: #eeeeee;
     text-align: center;
     h2 {
-      font-size: 2.2rem;
+      font-size: 25px;
       font-family: "Pretendard-SemiBold";
       margin-bottom: 10px;
     }
@@ -58,38 +60,67 @@ const ModalContent = styled.div`
       color: #a1a1a1;
       margin-bottom: 10px;
     }
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
   }
   main {
     color: #222831;
     background-color: #ffffff;
-    padding: 2rem 5rem 5rem;
+    padding: 1.5rem 12px 2rem;
     h4 {
       font-family: "Pretendard-SemiBold";
-      font-size: 1.7rem;
+      font-size: 23px;
       margin-bottom: 10px;
     }
     li {
       list-style: disc;
       padding: 7px 0;
-      margin-left: 3rem;
+      margin-left: 2rem;
       line-height: 160%;
+    }
+  }
+  @media (min-width: 1024px) {
+    width: 1024px;
+    header {
+      padding: 1.2rem 2rem;
+      h2 {
+        font-size: 2.2rem;
+      }
+    }
+    main {
+      padding: 2rem 5rem 5rem;
+      h4 {
+        font-size: 1.7rem;
+      }
+      li {
+        margin-left: 3rem;
+      }
     }
   }
 `;
 const CloseBtn = styled.button`
   position: fixed;
-  padding: 1.5rem;
+  padding: 5px;
   top: 0;
   right: 0;
   border-radius: 50%;
+  @media (min-width: 1024px) {
+    padding: 1.5rem;
+  }
 `;
 const Keyword = styled.li`
-  font-size: 15px;
-  display: inline-block;
-  margin-right: 5px;
+  font-size: 14px;
   padding: 5px 12px;
   background: #222831;
   border-radius: 7px;
+  @media (min-width: 1024px) {
+    font-size: 15px;
+  }
 `;
 const MainDesc = styled.section`
   display: flex;
@@ -98,8 +129,8 @@ const MainDesc = styled.section`
   align-items: center;
   margin-bottom: 2rem;
   p {
-    line-height: 160%;
-    width: 60%;
+    line-height: 150%;
+    width: 100%;
     text-align: center;
     position: relative;
     margin: 2rem 0;
@@ -115,9 +146,15 @@ const MainDesc = styled.section`
       background: #222831;
     }
   }
+  @media (min-width: 1024px) {
+    p {
+      width: 60%;
+      line-height: 130%;
+    }
+  }
 `;
 const ModalImg = styled.div`
-  width: 60%;
+  width: 90%;
   aspect-ratio: 5 / 3;
   overflow: hidden;
   margin-bottom: 1rem;
@@ -127,6 +164,9 @@ const ModalImg = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  @media (min-width: 1024px) {
+    width: 60%;
   }
 `;
 const Feature = styled.div`
@@ -176,14 +216,17 @@ const Screen = styled.div`
     margin: 1rem;
   }
   > div {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 7px;
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 14px;
+    }
   }
 `;
 const ImageArea = styled.div`
-  flex-basis: calc(25% - 14px);
-  height: 120px;
-  margin: 7px 7px 25px 7px;
+  aspect-ratio: 16 / 9;
   border: 1px solid #eeeeee;
   cursor: pointer;
   img {
@@ -614,13 +657,18 @@ export default function Modal({ selectedCard, onClose }) {
                 <span>*이미지 클릭 시 확대됩니다.</span>
                 <div>
                   {screen.map((item, index) => (
-                    <ImageArea key={index} onClick={() => handleImgClick(item)}>
-                      <img
-                        src={`${process.env.PUBLIC_URL}/images/${item}.png`}
-                        alt={`screen ${index + 1}`}
-                      />
+                    <div>
+                      <ImageArea
+                        key={index}
+                        onClick={() => handleImgClick(item)}
+                      >
+                        <img
+                          src={`${process.env.PUBLIC_URL}/images/${item}.png`}
+                          alt={`screen ${index + 1}`}
+                        />
+                      </ImageArea>
                       {screenDesc && <ImgDesc>{screenDesc[index]}</ImgDesc>}
-                    </ImageArea>
+                    </div>
                   ))}
                 </div>
               </Screen>

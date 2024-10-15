@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -54,9 +54,7 @@ const GlobalStyle = createGlobalStyle`
     background: #222831;
     color: #EEEEEE;
     font-family: 'Pretendard-Regular';
-    /* &::-webkit-scrollbar {
-      display: none;
-    } */
+    word-break: keep-all
   }
   ul, ol{
     list-style: none; 
